@@ -9,7 +9,7 @@ class PessoaSchema(BaseModel):
     altura: float
     sexo : str
     cep : int
-    rua_logradouro : str
+    ruaLogradouro : str
     bairro : str
     cidade : str
     uf : str
