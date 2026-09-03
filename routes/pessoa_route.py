@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from database import SessionLocal
@@ -21,27 +21,19 @@ def get_db():
         db.close()
 
 @router.get("/")
-def listar():
-    db = next(get_db())
-
+def listar(db: Session = Depends(get_db)):
     return controller.listar(db)
 
 @router.get("/{id}")
-def listar_id(id: int):
-    db = next(get_db())
-
+def listar_id(id: int, db: Session = Depends(get_db)):
     return controller.listar_id(db, id)
 
 @router.post("/")
-def cadstrar(pessoa: PessoaSchema):
-    db = next(get_db())
+def cadstrar(pessoa: PessoaSchema, db: Session = Depends(get_db)):
     return controller.cadastrar(db, pessoa)
 
 @router.put("/{id}")
-def alterar(id: int, pessoa: PessoaSchema):
-
-    db = next(get_db())
-
+def alterar(id: int, pessoa: PessoaSchema, db: Session = Depends(get_db)):
     return controller.alterar(
         db,
         id,
@@ -49,10 +41,7 @@ def alterar(id: int, pessoa: PessoaSchema):
     )
 
 @router.delete("/{id}")
-def excluir(id: int):
-
-    db = next(get_db())
-
+def excluir(id: int, db: Session = Depends(get_db)):
     return controller.excluir(
         db,
         id

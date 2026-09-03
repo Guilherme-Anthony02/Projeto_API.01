@@ -16,7 +16,7 @@ class PessoaRepository:
             altura = pessoa.altura,
             sexo = pessoa.sexo,
             cep = pessoa.cep,
-            rua_logradouro = pessoa.rua_logradouro,
+            ruaLogradouro = pessoa.ruaLogradouro,
             bairro = pessoa.bairro,
             cidade = pessoa.cidade,
             uf = pessoa.uf
@@ -43,7 +43,7 @@ class PessoaRepository:
         pessoa_bd.altura = pessoa.altura
         pessoa_bd.sexo = pessoa.sexo
         pessoa_bd.cep = pessoa.cep
-        pessoa_bd.rua_logradouro = pessoa.rua_logradouro
+        pessoa_bd.ruaLogradouro = pessoa.ruaLogradouro
         pessoa_bd.bairro = pessoa.bairro
         pessoa_bd.cidade = pessoa.cidade
         pessoa_bd.uf = pessoa.uf        
