@@ -45,3 +45,44 @@ DEFAULT CHARACTER SET = utf8mb3;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Table `bdpessoas02`.`corrida`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bdpessoas02`.`corrida` (
+  `idcorrida` INT NOT NULL AUTO_INCREMENT,
+  `descricao_corrida` TEXT(200) NOT NULL,
+  `data_corrida` DATE NOT NULL,
+  `distancia_5km` TINYINT NOT NULL,
+  `distancia_10km` TINYINT NOT NULL,
+  `distancia_25km` TINYINT NOT NULL,
+  PRIMARY KEY (`idcorrida`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `02`.`inscricao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bdpessoas02`.`inscricao` (
+  `idpessoa` INT NOT NULL,
+  `idcorrida` INT NOT NULL,
+  `tamanho_camisa` CHAR(5) NOT NULL,
+  PRIMARY KEY (`idpessoa`, `idcorrida`),
+  INDEX `fk_pessoa_has_corrida_corrida1_idx` (`idcorrida` ASC) VISIBLE,
+  INDEX `fk_pessoa_has_corrida_pessoa_idx` (`idpessoa` ASC) VISIBLE,
+  CONSTRAINT `fk_pessoa_has_corrida_pessoa`
+    FOREIGN KEY (`idpessoa`)
+    REFERENCES `bdpessoas02`.`pessoa` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pessoa_has_corrida_corrida1`
+    FOREIGN KEY (`idcorrida`)
+    REFERENCES `bdpessoas02`.`corrida` (`idcorrida`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

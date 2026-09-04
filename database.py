@@ -6,7 +6,7 @@ from sqlalchemy.orm import declarative_base
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "mysql+pymysql://root:@127.0.0.1:3306/bdpessoas02",
+    "mysql+pymysql://root:@127.0.0.1:3307/bdpessoas02",
 )
 
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
