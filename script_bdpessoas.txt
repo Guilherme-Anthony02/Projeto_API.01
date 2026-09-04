@@ -50,13 +50,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- Table `bdpessoas02`.`corrida`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bdpessoas02`.`corrida` (
-  `idCorrida` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `descricaoCorrida` TEXT(200) NOT NULL,
   `dataCorrida` DATE NOT NULL,
   `distancia5km` TINYINT NOT NULL,
   `distancia10km` TINYINT NOT NULL,
   `distancia25km` TINYINT NOT NULL,
-  PRIMARY KEY (`idCorrida`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -64,10 +64,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bdpessoas02`.`inscricao` (
   `idpessoa` INT NOT NULL,
-  `idCorrida` INT NOT NULL,
+  `id` INT NOT NULL,
   `tamanho_camisa` CHAR(5) NOT NULL,
-  PRIMARY KEY (`idpessoa`, `idCorrida`),
-  INDEX `fk_pessoa_has_corrida_corrida1_idx` (`idCorrida` ASC) VISIBLE,
+  PRIMARY KEY (`idpessoa`, `id`),
+  INDEX `fk_pessoa_has_corrida_corrida1_idx` (`id` ASC) VISIBLE,
   INDEX `fk_pessoa_has_corrida_pessoa_idx` (`idpessoa` ASC) VISIBLE,
   CONSTRAINT `fk_pessoa_has_corrida_pessoa`
     FOREIGN KEY (`idpessoa`)
@@ -75,8 +75,8 @@ CREATE TABLE IF NOT EXISTS `bdpessoas02`.`inscricao` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pessoa_has_corrida_corrida1`
-    FOREIGN KEY (`idCorrida`)
-    REFERENCES `bdpessoas02`.`corrida` (`idCorrida`)
+    FOREIGN KEY (`id`)
+    REFERENCES `bdpessoas02`.`corrida` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
