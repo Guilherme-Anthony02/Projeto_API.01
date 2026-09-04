@@ -9,11 +9,11 @@ class CorridaRepository:
     #cadastro Corrida
     def cadastar(self, db: Session, corrida):
         nova_corrida = Corrida(
-            descricao_corrida = corrida.descricao_corrida,
-            data_corrida = corrida.data_corrida,
-            distancia_5km = corrida.distancia_5km,
-            distancia_10km = corrida.distancia_10km,
-            distancia_25km = corrida.distancia_25km
+            descricaoCorrida = corrida.descricaoCorrida,
+            dataCorrida = corrida.dataCorrida,
+            distancia5km = corrida.distancia5km,
+            distancia10km = corrida.distancia10km,
+            distancia25km = corrida.distancia25km
         )
 
         db.add(nova_corrida)
@@ -24,17 +24,17 @@ class CorridaRepository:
     
     #listar corrida por id
     def corrida_id(self, db: Session, id: int):
-        return db.query(Corrida).filter(Corrida.idcorrida == id).first()
+        return db.query(Corrida).filter(Corrida.idCorrida == id).first()
     
     #alterar pessoa
     def alterar (self, db: Session, id: int, corrida):
         corrida_bd = self.corrida_id(db, id)
 
-        corrida_bd.descricao_corrida = corrida.descricao_corrida
-        corrida_bd.data_corrida = corrida.data_corrida
-        corrida_bd.distancia_5km = corrida.distancia_5km
-        corrida_bd.distancia_10km = corrida.distancia_10km
-        corrida_bd.distancia_25km = corrida.distancia_25km
+        corrida_bd.descricaoCorrida = corrida.descricaoCorrida
+        corrida_bd.dataCorrida = corrida.dataCorrida
+        corrida_bd.distancia5km = corrida.distancia5km
+        corrida_bd.distancia10km = corrida.distancia10km
+        corrida_bd.distancia25km = corrida.distancia25km
         
         db.commit()
         db.refresh(corrida_bd)
